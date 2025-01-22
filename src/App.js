@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import "./App.css";
@@ -13,6 +12,10 @@ function App() {
   const synonymRef = useRef(null);
   const errorRef = useRef(null);
 
+  const capitalizeWord = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
   const fetchSynonyms = async () => {
     setLoading(true);
     try {
@@ -22,8 +25,8 @@ function App() {
       const synonymData = response.data;
 
       if (synonymData.length > 0) {
-        setSynonyms(synonymData.map((item) => item.word));
-        setCurrentSynonym(synonymData[0].word);
+        setSynonyms(synonymData.map((item) => capitalizeWord(item.word)));
+        setCurrentSynonym(capitalizeWord(synonymData[0].word));
         setError("");
         synonymRef.current?.focus();
       } else {
@@ -40,6 +43,13 @@ function App() {
     }
   };
 
+  const getNewSynonym = () => {
+    if (synonyms.length > 1) {
+      const nextIndex = (synonyms.indexOf(currentSynonym) + 1) % synonyms.length;
+      setCurrentSynonym(synonyms[nextIndex]);
+    }
+  };
+
   return (
     <div className="App" aria-busy={loading} aria-live="polite">
       <header>
@@ -51,7 +61,7 @@ function App() {
           <input
             id="word-input"
             type="text"
-            placeholder=""
+            placeholder="e.g., happy"
             value={word}
             onChange={(e) => setWord(e.target.value)}
             aria-label="Input word to find synonyms"
@@ -60,11 +70,26 @@ function App() {
           <button onClick={fetchSynonyms} disabled={loading || !word.trim()}>
             {loading ? "Loading..." : "Get Synonym"}
           </button>
-          <br />
-        {synonyms[0]}
+
           {error && (
             <p ref={errorRef} className="error" role="alert">
               {error}
+            </p>
+          )}
+
+          {currentSynonym && (
+            <p
+              ref={synonymRef}
+              className="synonym"
+              onClick={getNewSynonym}
+              role="button"
+              tabIndex="0"
+              aria-label="Get another synonym"
+            >
+              {capitalizeWord(currentSynonym)} 
+              <br />
+              <br />
+             <button>Get a Different Synonym </button> 
             </p>
           )}
         </div>
@@ -74,4 +99,3 @@ function App() {
 }
 
 export default App;
-
