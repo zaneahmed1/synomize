@@ -1,8 +1,104 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
 body {
-  font-family: "Arial Rounded MT Bold", cursive;
-  background-color: #fffff7;
   margin: 0;
   padding: 0;
-  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  background: #ffeaf4;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
+
+.App {
+  text-align: center;
+  padding: 2rem;
+  background: #fff0f8;
+  border-radius: 2rem;
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+  max-width: 500px;
+  width: 90%;
+}
+
+header h1 {
+  font-family: 'Delius', cursive;
+  font-size: 3rem;
+  color: #ff69b4;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px #fff;
+}
+
+.synonym-fetcher label {
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #d63384;
+}
+
+input[type="text"] {
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ffb6c1;
+  border-radius: 2rem;
+  outline: none;
+  width: 80%;
+  max-width: 300px;
+  margin-bottom: 1rem;
+  transition: 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #ff69b4;
+  background-color: #fffafc;
+}
+
+button {
+  background: #ff69b4;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #ff85c1;
+}
+
+.error {
+  color: #d63384;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.synonym {
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #ff1493;
+  background-color: #ffe4ec;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.synonym:hover {
+  background-color: #ffd6e8;
+}
+
+.synonym button {
+  margin-top: 1rem;
+  background-color: #e75480;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
